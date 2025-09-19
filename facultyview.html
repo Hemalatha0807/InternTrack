@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Faculty Internship View</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+            text-align: center;
+        }
+
+        h2 {
+            color: #333;
+        }
+
+        button {
+            background-color: #007BFF;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            border-radius: 5px;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        #studentDetails {
+            margin-top: 20px;
+            overflow-x: auto;
+        }
+
+        table {
+            width: 95%;
+            margin: 0 auto;
+            border-collapse: collapse;
+            background: white;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        th, td {
+            padding: 8px;
+            border: 1px solid #ddd;
+            text-align: center;
+            font-size: 14px;
+        }
+
+        th {
+            background-color: #007BFF;
+            color: white;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        tr:hover {
+            background-color: #f1f1f1;
+        }
+
+        @media screen and (max-width: 768px) {
+            table {
+                font-size: 12px;
+            }
+            th, td {
+                padding: 5px;
+            }
+        }
+    </style>
+    <script>
+        function fetchAllInternshipDetails() {
+            fetch('https://script.google.com/macros/s/AKfycbyvC6wnMgHdPFQ2UkWuZlmAr2uRLF3yRVu87eY7_Kp7sY7ObKAHvEQ_6v2q66ixDy3_SQ/exec?action=getAllData')
+                .then(response => response.json())
+                .then(data => {
+                    let table = `<table>
+                                    <tr>
+                                        <th>RegNo</th>
+                                        <th>Name</th>
+                                        <th>Title</th>
+                                        <th>Mobile</th>
+                                        <th>Section</th>
+                                        <th>Year</th>
+                                        <th>Obtained Internship</th>
+                                        <th>Period</th>
+                                        <th>Start Date</th>
+                                        <th>End Date</th>
+                                        <th>Company</th>
+                                        <th>Placement Source</th>
+                                        <th>Stipend</th>
+                                        <th>Internship Type</th>
+                                        <th>Location</th>
+                                        <th>Permission Letter</th>
+                                        <th>Completion Certificate</th>
+                                        <th>Internship Report</th>
+                                        <th>Student Feedback</th>
+                                        <th>Employer Feedback</th>
+                                    </tr>`;
+
+                    data.forEach(row => {
+                        table += `<tr>
+                                    <td>${row[0]}</td>
+                                    <td>${row[1]}</td>
+                                    <td>${row[2]}</td>
+                                    <td>${row[3]}</td>
+                                    <td>${row[4]}</td>
+                                    <td>${row[5]}</td>
+                                    <td>${row[6]}</td>
+                                    <td>${row[7]}</td>
+                                    <td>${row[8]}</td>
+                                    <td>${row[9]}</td>
+                                    <td>${row[10]}</td>
+                                    <td>${row[11]}</td>
+                                    <td>${row[12]}</td>
+                                    <td>${row[13]}</td>
+                                    <td>${row[14]}</td>
+                                    <td>${row[15]}</td>
+                                    <td>${row[16]}</td>
+                                    <td>${row[17]}</td>
+                                    <td>${row[18]}</td>
+                                    <td>${row[19]}</td>
+                                  </tr>`;
+                    });
+
+                    table += `</table>`;
+                    document.getElementById('studentDetails').innerHTML = table;
+                })
+                .catch(error => {
+                    console.error('Error fetching student details:', error);
+                    document.getElementById('studentDetails').innerHTML = "<p style='color: red;'>Error loading data.</p>";
+                });
+        }
+    </script>
+</head>
+<body>
+
+    <h2>Faculty View - Internship Details</h2>
+    <button onclick="fetchAllInternshipDetails()">View Details</button>
+    
+    <div id="studentDetails"></div>
+
+</body>
+</html>

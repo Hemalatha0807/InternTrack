@@ -1,0 +1,172 @@
+<html>
+<head>
+    <title>Update Internship Details</title>
+    <link rel="stylesheet" href="style1.css">
+</head>
+<body>
+    <div class="header">SSN College of Engineering <br> Department of Computer Science</div>
+    
+    <div class="container">
+        <form id="update-form">
+            <h4>Update Internship Details</h4>
+            
+            <!-- Register Number (used to fetch data) -->
+            <input type="text" id="RegNo" name="RegNo" placeholder="Enter Register Number" required>
+            <button type="button" onclick="fetchData()">Fetch Details</button>
+            
+            <!-- Fields to be updated -->
+            <input type="text" id="Name" name="Name" placeholder="Name" required>
+            <input type="text" id="Title" name="Title" placeholder="Title">
+            <input type="tel" id="Mobile" name="Mobile" placeholder="Mobile No." required>
+            <input type="text" id="Section" name="Section" placeholder="Section">
+            
+            <label>Current Year</label>
+            <select id="Year" name="Year">
+                <option value="III year">III year</option>
+                <option value="II year">II year</option>
+            </select>
+            
+            <label>Obtained Internship</label>
+            <select id="ObtainedInternship" name="ObtainedInternship">
+                <option value="Yes">Yes</option>
+                <option value="No">No</option>
+            </select>
+
+            <input type="text" id="Period" name="Period" placeholder="Period (e.g., 2 months)">
+            
+            <label>Start Date</label>
+            <input type="date" id="StartDate" name="StartDate">
+            
+            <label>End Date</label>
+            <input type="date" id="EndDate" name="EndDate">
+            
+            <input type="text" id="Company" name="Company" placeholder="Company Name">
+            
+            <label>Placement Source</label>
+            <select id="PlacementSource" name="PlacementSource">
+                <option value="Through College">Through College</option>
+                <option value="Self Applied">Self Applied</option>
+            </select>
+            
+            <input type="number" id="Stipend" name="Stipend" placeholder="Stipend (In Rs.)">
+            
+            <label>Internship Type</label>
+            <select id="InternshipType" name="InternshipType">
+                <option value="Research">Research</option>
+                <option value="Industrial">Industrial</option>
+            </select>
+            
+            <label>Abroad / India</label>
+            <select id="Location" name="Location">
+                <option value="India">India</option>
+                <option value="Abroad">Abroad</option>
+            </select>
+
+            <h4>Document Submission</h4>
+            
+            <label>Signed Permission Letter, Offer Letter Submitted</label>
+            <select id="PermissionLetter" name="PermissionLetter">
+                <option value="Yes">Yes</option>
+                <option value="No">No</option>
+            </select>
+            
+            <label>Completion Certificate Submitted</label>
+            <select id="CompletionCertificate" name="CompletionCertificate">
+                <option value="Yes">Yes</option>
+                <option value="No">No</option>
+            </select>
+
+            <label>Internship Report Submitted</label>
+            <select id="InternshipReport" name="InternshipReport">
+                <option value="Yes">Yes</option>
+                <option value="No">No</option>
+            </select>
+
+            <label>Student Feedback Submitted</label>
+            <select id="StudentFeedback" name="StudentFeedback">
+                <option value="Yes">Yes</option>
+                <option value="No">No</option>
+            </select>
+
+            <label>Employer Feedback Submitted</label>
+            <select id="EmployerFeedback" name="EmployerFeedback">
+                <option value="Yes">Yes</option>
+                <option value="No">No</option>
+            </select>
+            
+            <input type="submit" value="Update" id="submit" onclick="alert('Updated Successfully')">
+        </form>
+    </div>
+
+    <script>
+        function fetchData() {
+            let regNo = document.getElementById("RegNo").value;
+            
+            if (!regNo) {
+                alert("Please enter your Register Number.");
+                return;
+            }
+            
+            let url = "https://script.google.com/macros/s/YOUR_SCRIPT_DEPLOYMENT_ID/exec?action=getStudentData&register=" + regNo;
+            
+            fetch(url)
+                .then(response => response.json())
+                .then(data => {
+                    if (data.length === 0) {
+                        alert("No record found for this Register Number.");
+                        return;
+                    }
+
+                    let student = data[0];  // Fetch the first matching record
+
+                    document.getElementById("Name").value = student[1];
+                    document.getElementById("Title").value = student[2];
+                    document.getElementById("Mobile").value = student[3];
+                    document.getElementById("Section").value = student[4];
+                    document.getElementById("Year").value = student[5];
+                    document.getElementById("ObtainedInternship").value = student[6];
+                    document.getElementById("Period").value = student[7];
+                    document.getElementById("StartDate").value = student[8];
+                    document.getElementById("EndDate").value = student[9];
+                    document.getElementById("Company").value = student[10];
+                    document.getElementById("PlacementSource").value = student[11];
+                    document.getElementById("Stipend").value = student[12];
+                    document.getElementById("InternshipType").value = student[13];
+                    document.getElementById("Location").value = student[14];
+                    document.getElementById("PermissionLetter").value = student[15];
+                    document.getElementById("CompletionCertificate").value = student[16];
+                    document.getElementById("InternshipReport").value = student[17];
+                    document.getElementById("StudentFeedback").value = student[18];
+                    document.getElementById("EmployerFeedback").value = student[19];
+                })
+                .catch(error => console.error("Error fetching data:", error));
+        }
+
+        document.getElementById("update-form").addEventListener("submit", function(event) {
+            event.preventDefault();
+
+            let formData = new FormData(document.getElementById("update-form"));
+            let jsonData = {};
+
+            formData.forEach((value, key) => {
+                jsonData[key] = value;
+            });
+
+            fetch("https://script.google.com/macros/s/AKfycbxM6FIeD8pujdvJ-f2fNTArZwaTiXqaBBbOo8ADKDD4aXFBz2H4wNZ4ZbSikQ1poGVJLA/exec?action=updateData", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(jsonData)
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.result === "Update successful") {
+                    alert("Details updated successfully!");
+                } else {
+                    alert("Error updating details: " + data.error);
+                }
+            })
+            .catch(error => console.error("Error:", error));
+        });
+    </script>
+</body>
+</html>

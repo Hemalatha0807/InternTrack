@@ -1,0 +1,101 @@
+<html>
+<head>
+    <title>Internship Form</title>
+    <link rel="stylesheet" href="style1.css">
+</head>
+<body>
+    <div class="header">SSN College of Engineering <br> Department of Computer Science</div>
+    <div class="container">
+        <form method="post" action="https://script.google.com/macros/s/AKfycbyvC6wnMgHdPFQ2UkWuZlmAr2uRLF3yRVu87eY7_Kp7sY7ObKAHvEQ_6v2q66ixDy3_SQ/exec" name="internship-form">
+            <h4>Internship Details</h4>
+            <input type="text" name="RegNo" placeholder="Register Number" required>
+            <input type="text" name="Name" placeholder="Name" required>
+            <input type="text" name="Title" placeholder="Title">
+            <input type="tel" name="Mobile" placeholder="Mobile No." required>
+            <input type="text" name="Section" placeholder="Section">
+            <label>Current Year</label>
+            <select name="Year">
+                <option value="III year">III year</option>
+                <option value="II year">II year</option>
+            </select>
+            
+            <label>Obtained Internship</label>
+            <select name="ObtainedInternship">
+                <option value="Yes">Yes</option>
+                <option value="No">No</option>
+            </select>
+            
+            <input type="text" name="Period" placeholder="Period (e.g., 2 months)">
+            <label>Start Date</label>
+            <input type="date" name="StartDate">
+            <label>End Date</label>
+            <input type="date" name="EndDate">
+            
+            <input type="text" name="Company" placeholder="Company Name">
+            
+            <label>Placement Source</label>
+            <select name="PlacementSource">
+                <option value="Through College">Through College</option>
+                <option value="Self Applied">Self Applied</option>
+            </select>
+            
+            <input type="number" name="Stipend" placeholder="Stipend (In Rs.)">
+            
+            <label>Internship Type</label>
+            <select name="InternshipType">
+                <option value="Research">Research</option>
+                <option value="Industrial">Industrial</option>
+            </select>
+            
+            <label>Abroad / India</label>
+            <select name="Location">
+                <option value="India">India</option>
+                <option value="Abroad">Abroad</option>
+            </select>
+            
+            <h4>Document Submission</h4>
+            
+            <label>Signed Permission Letter, Offer Letter Submitted</label>
+            <select name="PermissionLetter">
+                <option value="Yes">Yes</option>
+                <option value="No">No</option>
+            </select>
+            <br>
+            
+            <label>Completion Certificate Submitted</label>
+            <select name="CompletionCertificate">
+                <option value="Yes">Yes</option>
+                <option value="No">No</option>
+            </select>
+            <br>
+
+            <label>Internship Report Submitted</label>
+            <select name="InternshipReport">
+                <option value="Yes">Yes</option>
+                <option value="No">No</option>
+            </select>
+            <br>
+
+            <label>Student Feedback Submitted</label>
+            <select name="StudentFeedback">
+                <option value="Yes">Yes</option>
+                <option value="No">No</option>
+            </select>
+            <br>
+
+            <label>Employer Feedback Submitted</label>
+            <select name="EmployerFeedback">
+                <option value="Yes">Yes</option>
+                <option value="No">No</option>
+            </select>
+            <br>
+
+    
+            <input type="submit" value="Submit" id="submit">
+            <script>
+                alert("Form submitted successfully!");
+            </script>
+        </form>
+    </div>
+</body>
+</html>

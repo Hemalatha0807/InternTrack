@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form id="userForm" style="text-align: center;">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required/>
+        <br><br>
+        <label for="d_id">Digital Id</label>
+        <input type="text" id="d_id" name="d_id" required/>
+        <br><br>
+        <label for="dept">Department:</label>
+        <input type="text" id="dept" name="dept" required/>
+        <br><br>
+        <button type="submit">Submit</button>
+    </form>
+
+    <div id="result" style="text-align: center; margin-top: 20px;"></div>
+
+    <script>
+        const form = document.getElementById("userForm");
+        const resultDiv = document.getElementById("result");
+
+        form.addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent form submission
+
+            const name = document.getElementById('name').value;
+            const d_id = document.getElementById('d_id').value;
+            const dept = document.getElementById('dept').value;
+
+            // Validation
+            const digitOnlyRegex = /^\d+$/;
+            const noDigitRegex = /^[^0-9]*$/;
+
+            if (!digitOnlyRegex.test(d_id)) {
+                alert("Digital Id must contain only digits.");
+                return;
+            }
+
+            if (!noDigitRegex.test(dept)) {
+                alert("Department should not contain any digits.");
+                return;
+            }
+
+            // If valid, display the details
+            resultDiv.innerHTML = `
+                <h3>Entered Details:</h3>
+                <p><strong>Name:</strong> ${name}</p>
+                <p><strong>Digital Id:</strong> ${d_id}</p>
+                <p><strong>Department:</strong> ${dept}</p>
+            `;
+        });
+    </script>
+</body>
+</html>

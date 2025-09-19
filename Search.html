@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fetch Register Number</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: pink;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            background: palevioletred;
+            padding: 30px;
+            border-radius: 10px;
+            text-align: center;
+            color: white;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+        h2 {
+            margin-bottom: 15px;
+        }
+        input {
+            padding: 10px;
+            width: 250px;
+            border-radius: 5px;
+            border: none;
+            font-size: 16px;
+        }
+        .search-button {
+            background: #4f46e5;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 10px;
+        }
+        .search-button:hover {
+            opacity: 0.8;
+        }
+        .result {
+            margin-top: 15px;
+            font-size: 18px;
+            font-weight: bold;
+            padding: 10px;
+            border-radius: 5px;
+            background: blueviolet;
+            color: yellow;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Fetch Register Number</h2>
+        <input type="text" id="studentName" placeholder="Enter Register number:">
+        <button class="search-button" onclick="fetchRegisterNumber()">Search</button>
+        <div id="result" class="result">Register Number: </div>
+    </div>
+
+    <script>
+        function fetchRegisterNumber() {
+            var name = document.getElementById("studentName").value.trim();
+            var resultDiv = document.getElementById("result");
+
+            // Sample student data (Replace with actual database logic)
+            var studentData = {
+                "Prathiyangira Devi": "REG12345",
+                "John Doe": "REG67890",
+                "Jane Smith": "REG11223"
+            };
+
+            if (name in studentData) {
+                resultDiv.innerHTML = "Register Number: " + studentData[name];
+                resultDiv.style.color = "lightgreen";
+            } else {
+                resultDiv.innerHTML = "Register Number: Not Found";
+                resultDiv.style.color = "red";
+            }
+        }
+    </script>
+</body>
+</html>
